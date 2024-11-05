@@ -1,14 +1,13 @@
 env:
-  # Get these values from the Firebase console
-  - variable: 'AIzaSyDPRO112G1GEc4TmjThOZ5SY9J5Hvy1s-I'
-    value: TODO
+  - variable: AIzaSyDPRO112G1GEc4TmjThOZ5SY9J5Hvy1s-I
+    value: YOUR_API_KEY
   - variable: nextfire-f6b9d.firebaseapp.com
-    value: TODO
+    value: YOUR_AUTH_DOMAIN
   - variable: nextfire-f6b9d
-    value: TODO
+    value: YOUR_PROJECT_ID
   - variable: nextfire-f6b9d.firebasestorage.app
-    value: TODO
+    value: YOUR_STORAGE_BUCKET
   - variable: 847777030798
-    value: TODO
+    value: YOUR_MESSAGING_SENDER_ID
   - variable: 1:847777030798:web:a856c5912694fcb793dfdf
-    value: TODO
+    value: YOUR_APP_ID
