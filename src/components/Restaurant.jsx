@@ -54,9 +54,16 @@ export default function Restaurant({
       setRestaurantDetails(data);
     });
 
+    console.log(typeof unsubscribeFromRestaurant); // Check the type
+
     return () => {
-      unsubscribeFromRestaurant();
+      if (typeof unsubscribeFromRestaurant === 'function') {
+        unsubscribeFromRestaurant();
+      } else {
+        console.warn('unsubscribeFromRestaurant is not a function');
+      }
     };
+    
   }, []);
 
   return (

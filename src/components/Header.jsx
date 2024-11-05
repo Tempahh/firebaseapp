@@ -23,7 +23,7 @@ function useUserSession(initialUser) {
 					const serviceWorkerUrl = `/auth-service-worker.js?firebaseConfig=${serializedFirebaseConfig}`
 			
 			  navigator.serviceWorker
-					.register(serviceWorkerUrl)
+					.register(serviceWorkerUrl, {type: 'module'})
 					.then((registration) => console.log("scope is: ", registration.scope));
 			}
 	  }, []);
@@ -33,7 +33,13 @@ function useUserSession(initialUser) {
 					setUser(authUser)
 			})
 
-			return () => unsubscribe()
+			return () => {
+				if (typeof unsubscribe === 'function') {
+					unsubscribe()
+				} else {
+					console.warn('unsubscribe is not a function')
+				}
+			}
 			// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

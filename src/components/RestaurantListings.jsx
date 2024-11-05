@@ -82,8 +82,13 @@ export default function RestaurantListings({
 		}, filters);
 
 		return () => {
-			unsubscribe();
-		};
+			if (typeof unsubscribe === 'function') {
+				unsubscribe()
+			} else {
+				console.warn('unsubscribe is not a function')
+			}
+		}
+
 	}, [filters]);
 
 	return (
