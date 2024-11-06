@@ -6,11 +6,11 @@ import { headers } from "next/headers";
 import { initializeServerApp } from "firebase/app";
 
 import { firebaseConfig } from "./config";
-import { getAuth } from "firebase/auth";
+import { initializeAuth } from "firebase/auth";
 
 export async function getAuthenticatedAppForUser() {
   const idToken = headers().get("Authorization")?.split("Bearer ")[1];
-  console.log('firebaseConfig', JSON.stringify(firebaseConfig));
+
   const firebaseServerApp = initializeServerApp(
     firebaseConfig,
     idToken
@@ -20,8 +20,10 @@ export async function getAuthenticatedAppForUser() {
       : {}
   );
 
-  const auth = getAuth(firebaseServerApp);
+  const auth = initializeAuth(firebaseServerApp);
+  //console.log('this is thhe auth object:', auth)
   await auth.authStateReady();
+  console.log('this is thhe auth object:', auth)
 
   return { firebaseServerApp, currentUser: auth.currentUser };
 }

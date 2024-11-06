@@ -14,7 +14,13 @@ export function useUser() {
       setUser(authUser);
     });
 
-    return () => unsubscribe();
+    return () => {
+      if (typeof unsubscribe === 'function') {
+        unsubscribe()
+      } else {
+        console.warn('unsubsribe is not a function')
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
@@ -33,13 +34,7 @@ function useUserSession(initialUser) {
 					setUser(authUser)
 			})
 
-			return () => {
-				if (typeof unsubscribe === 'function') {
-					unsubscribe()
-				} else {
-					console.warn('unsubscribe is not a function')
-				}
-			}
+			return () => unsubscribe()
 			// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

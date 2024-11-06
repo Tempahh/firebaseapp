@@ -11,3 +11,5 @@ env:
     value: YOUR_MESSAGING_SENDER_ID
   - variable: 1:847777030798:web:a856c5912694fcb793dfdf
     value: YOUR_APP_ID
+  - variable: GEMINI_API_KEY
+    secret: gemini-api-key

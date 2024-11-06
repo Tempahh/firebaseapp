@@ -1,3 +1,5 @@
+'use client'
+
 import { initializeApp } from "firebase/app";
 import { getAuth, getIdToken } from "firebase/auth";
 import { getInstallations, getToken } from "firebase/installations";
@@ -23,10 +25,12 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(fetchWithFirebaseHeaders(event.request));
 });
 
+
 // TODO: add Firebase Authentication headers to request
 async function fetchWithFirebaseHeaders(request) {
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  console.log(auth.currentUser)
   const installations = getInstallations(app);
   const headers = new Headers(request.headers);
   const [authIdToken, installationToken] = await Promise.all([
