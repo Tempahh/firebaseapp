@@ -13,7 +13,7 @@ export async function GeminiSummary({ restaurantId }) {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
   const reviewSeparator = "@";
-  let reviewlist = reviews.map(review => review.text).join('@')
+  let reviewlist = reviews.map(review => review.text).join(reviewSeparator)
   
   const prompt = `
       Based on the following restaurant reviews, 
@@ -36,6 +36,9 @@ export async function GeminiSummary({ restaurantId }) {
       );
   } catch (e) {
       console.error(e);
+      if (e.message.includes("SAFETY")) {
+          return <p>Unable to generate a summary due to content safety policies.</p>;
+      }
       return <p>Error contacting Gemini</p>;
   }
 }
